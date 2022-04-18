@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHT Leave Comment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body style="padding: 20px;">
+        <ul style="padding: 20px; width: 65%;" class="nav">
+            <li class="nav-item">
+                <h2>Leave Comment for {{this_injury.name}}</h2>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard"><button class="btn btn-dark">Dashboard</button></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout"><button class="btn btn-dark">LogOut</button></a> 
+            </li>
+        </ul>
+    <form style="padding: 20px;" action="/comment/add/{{this_injury.id}}" method="POST">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}                            
+                {% for message in messages %}            
+                    <p>{{message}}</p>                   
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="form-floating">
+            <label for="comment" class="form-label">Comment:</label>
+            <textarea style="width: 55%; height: 150px;" name="comment" class="form-control" id="comment" cols="20" rows="5"></textarea>
+        </div>
+    <input class="btn btn-dark" style="float: right; margin-right: 45%; margin-top: 20px;" type="submit" value="Make Comment">
+    </form>
+</body>
+</html>

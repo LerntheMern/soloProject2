@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHT Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+            <ul style="list-style: none;" class="nav-fill">
+                <li class="nav-item"><h1>Welcome {{user.first_name}}!</h1></li>
+                <li class="nav-item"><a class="nav-link" href="/logout"><button class="btn btn-dark">LogOut</button></a></li>
+            </ul>
+        <div>
+            <h2>Your Injuries/Programs</h2>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Injury</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for this_injury in all_injuries %}
+                        {% if user.id == this_injury.patient.id%}
+                        <tr>
+                            <th scope="row">{{this_injury.name}}</th>
+                            
+                            <td><a href="/programs/{{this_injury.id}}">View</a>
+                                <a href="/injury/{{this_injury.id}}/delete">Completed</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/request_program"><button class="btn btn-dark">Submit Request</button></a>
+    </div>
+
+</body>
+</html>

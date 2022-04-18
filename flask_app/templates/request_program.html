@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHT Request Program</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body style="padding: 20px;">
+        <ul class="nav">
+            <li class="nav-item"><h1>Request New Program!</h1></li>
+            <li class="nav-item"><a class="nav-link" href="/dashboard"><button class="btn btn-dark">Dashboard</button></a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout"><button class="btn btn-dark">LogOut</button></a> </li>
+        </ul>
+    <form action="/request_program/add" method="POST">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}                            
+                {% for message in messages %}            
+                    <p>{{message}}</p>                   
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div>
+            <div class="form-group">
+                <label for="injury">Injury:</label>
+                <input type="text" name="injury" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="cause">Cause of Injury:</label>
+                <textarea style = "height: 100px;" class="form-control" name="cause" id="cause_of_injury" cols="30" rows="10"></textarea><br>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="location">Location of Injury:</label>
+                    <input type="text" name="location" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="hobbies_activities">Hobbies/Activites:</label>
+                    <input type="text" name="hobbies_activities" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="pain_level">Pain Level:</label>
+                    <input type="number" name="pain_level" value="yes" class="form-control">
+                </div>
+            </div>
+        </div>
+        <input style="margin-top: 10px;" class="btn btn-dark" type="submit" value="Request Program">
+    </form>
+</body>
+</html>
